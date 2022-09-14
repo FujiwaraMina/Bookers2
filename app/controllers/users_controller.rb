@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @books = @user.books.page(params[:page])
   end
 
   def create
@@ -16,6 +15,7 @@ class UsersController < ApplicationController
     @user =  current_user
     @users = User.all
     @books = Book.all
+    @book = Book.new
   end
 
   private
