@@ -1,7 +1,7 @@
 <main>
   <div class="container px-5 px-sm-0">
     <div class="row flex">
-      <%= render 'list',book: @book_new ,user: @user %>
+      <%= render 'list',book: @book_new ,user: @book.user %>
 
 
     <div class="col-md-8 offset-md-1">
@@ -9,19 +9,23 @@
      <table class="table">
       <tbody>
             <tr>
-              <td><%= image_tag @user.get_profile_image(100,100) %><br>
-               <%= link_to @user.name,user_path %>
+              <td><%= image_tag @book.user.get_profile_image(100,100) %><br>
+               <%= link_to @book.user.name,user_path %>
               </td>
               <td><span><%= @book.title %></span></td>
               <td><span><%= @book.body %></span></td>
               <td>
-                <%= link_to edit_book_path,class:"btn btn-success" do %>
-                 Edit
+                <% if @book.user == current_user %>
+                  <%= link_to edit_book_path,class:"btn btn-success" do %>
+                   Edit
+                  <% end %>
                 <% end %>
               </td>
               <td>
-                <%= link_to book_path(@book),class:"btn btn-danger",method: :delete do %>
-                Dstroy
+                <% if @book.user == current_user %>
+                  <%= link_to book_path(@book),class:"btn btn-danger",method: :delete do %>
+                  Dstroy
+                  <% end %>
                 <% end %>
               </td>
             </tr>
