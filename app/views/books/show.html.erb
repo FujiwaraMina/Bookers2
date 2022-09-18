@@ -8,32 +8,32 @@
     <h1>Book detail</h1>
      <table class="table">
       <tbody>
-       <% @book_id.each do |book| %>
+
             <tr>
               <td>
-                <%= link_to user_path(book.user) do %>
-                  <%= image_tag book.user.get_profile_image(100,100) %><br>
+                <%= link_to user_path(@book.user) do %>
+                  <%= image_tag @book.user.get_profile_image(100,100) %><br>
                 <% end %>
-                <%= link_to book.user.name,user_path(book.user) %>
+                <%= link_to @book.user.name,user_path(@book.user) %>
               </td>
-              <td><span><%= book.title %></span></td>
-              <td><span><%= book.body %></span></td>
+              <td><span><%= @book.title %></span></td>
+              <td><span><%= @book.body %></span></td>
               <td>
-                <% if book.user == current_user %>
+                <% if @book.user == current_user %>
                   <%= link_to edit_book_path,class:"btn btn-success" do %>
                    Edit
                   <% end %>
                 <% end %>
               </td>
               <td>
-                <% if book.user == current_user %>
-                  <%= link_to book_path(book),class:"btn btn-danger",method: :delete do %>
+                <% if @book.user == current_user %>
+                  <%= link_to book_path(@book),class:"btn btn-danger",method: :delete ,"data-confirm" => "本当に消しますか?" do %>
                   Destroy
                   <% end %>
                 <% end %>
               </td>
             </tr>
-          <% end %>
+
       </tbody>
      </table>
     </div>
