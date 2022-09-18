@@ -3,20 +3,18 @@
     <div class="row flex">
       <%= render 'list',book: @book_new ,user: @book.user %>
 
-
-    <div class="col-md-8 offset-md-1">
-    <h1>Book detail</h1>
-     <table class="table">
+      <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
       <tbody>
-
-            <tr>
-              <td>
-                <%= link_to user_path(@book.user) do %>
+         <tr>
+            <td>
+            　   <%= link_to user_path(@book.user) do %>
                   <%= image_tag @book.user.get_profile_image(100,100) %><br>
-                <% end %>
+            　   <% end %>
                 <%= link_to @book.user.name,user_path(@book.user) %>
               </td>
-              <td><span><%= @book.title %></span></td>
+              <td><span><%= link_to @book.title,book_path %></span></td>
               <td><span><%= @book.body %></span></td>
               <td>
                 <% if @book.user == current_user %>
@@ -33,11 +31,9 @@
                 <% end %>
               </td>
             </tr>
-
       </tbody>
-     </table>
-    </div>
-
+      </table>
+      </div>
     </div>
   </div>
 </main>
